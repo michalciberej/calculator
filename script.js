@@ -38,6 +38,16 @@ function deInput() {
     }   
 }
 
+function addDot(a) {
+    if (operator == "") {
+        numOne += a;
+        displayTwo.textContent = numOne;
+}   else {
+        numTwo += a;
+        displayTwo.textContent = numTwo;
+    }
+}
+
 function addNumber(a) {
     if (operator == ""){
         numOne += a;
@@ -56,35 +66,35 @@ function addOperator(a) {
 
 function operate() {
     if (operator == "%") {
-        result = parseInt(numOne) % parseInt(numTwo);
+        result = Math.round(parseFloat((numOne) % parseFloat(numTwo)) * 1000) / 1000;
         numOne = result;
         operator = "";
         numTwo = "";
         displayTwo.textContent = result;
         displayOne.textContent = "";
 }   else if (operator =="/") {
-        result = parseInt(numOne) / parseInt(numTwo);
+        result = Math.round(parseFloat((numOne) / parseFloat(numTwo)) * 1000) / 1000;
         numOne = result;
         operator = "";
         numTwo = "";
         displayTwo.textContent = result;
         displayOne.textContent = "";
 }   else if (operator == "*") {
-        result = parseInt(numOne) * parseInt(numTwo);
+        result = Math.round(parseFloat((numOne) * parseFloat(numTwo)) * 1000) / 1000;
         numOne = result;
         operator = "";
         numTwo = "";
         displayTwo.textContent = result;
         displayOne.textContent = "";
 }   else if (operator == "-") {
-        result = parseInt(numOne) - parseInt(numTwo);
+        result = Math.round(parseFloat((numOne) - parseFloat(numTwo)) * 1000) / 1000;
         numOne = result;
         operator = "";
         numTwo = "";
         displayTwo.textContent = result;
         displayOne.textContent = "";
 }   else {
-        result = parseInt(numOne) + parseInt(numTwo);
+        result = Math.round(parseFloat((numOne) + parseFloat(numTwo)) * 1000) / 1000;
         numOne = result;
         operator = "";
         numTwo = "";
@@ -101,6 +111,8 @@ function restart() {
     displayTwo.textContent = "";
 }
 
+
+
 cBtn.addEventListener("click", () => restart());
 deBtn.addEventListener("click", () => deInput());
 modulo.addEventListener("click", () => addOperator("%"));
@@ -108,7 +120,7 @@ devide.addEventListener("click", () => addOperator("/"));
 minus.addEventListener("click", () => addOperator("-"));
 plus.addEventListener("click", () => addOperator("+"));
 multiply.addEventListener("click", () => addOperator("*"));
-// dot.addEventListener("click", () => addDot("."));
+dot.addEventListener("click", () => addDot("."));
 zero.addEventListener("click", () => addNumber("0"));
 one.addEventListener("click", () => addNumber("1"));
 two.addEventListener("click", () => addNumber("2"));
