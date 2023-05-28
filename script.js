@@ -24,11 +24,25 @@ let numTwo = "";
 let operator = "";
 let result = "";
 
+// function addDot() {
+
+// }
+
+function deInput() {
+    if (operator == "") {
+        numOne = numOne.substring(0, numOne.length - 1);
+        displayTwo.textContent = numOne;
+}   else {
+        numTwo = numTwo.substring(0, numTwo.length - 1);
+        displayTwo.textContent = numTwo;
+    }   
+}
+
 function addNumber(a) {
     if (operator == ""){
         numOne += a;
         displayTwo.textContent = numOne;
-    } else {
+} else {
         numTwo += a;
         displayTwo.textContent = numTwo;
     }
@@ -48,28 +62,28 @@ function operate() {
         numTwo = "";
         displayTwo.textContent = result;
         displayOne.textContent = "";
-    }   else if (operator =="/") {
+}   else if (operator =="/") {
         result = parseInt(numOne) / parseInt(numTwo);
         numOne = result;
         operator = "";
         numTwo = "";
         displayTwo.textContent = result;
         displayOne.textContent = "";
-    }   else if (operator == "*") {
+}   else if (operator == "*") {
         result = parseInt(numOne) * parseInt(numTwo);
         numOne = result;
         operator = "";
         numTwo = "";
         displayTwo.textContent = result;
         displayOne.textContent = "";
-    }   else if (operator == "-") {
+}   else if (operator == "-") {
         result = parseInt(numOne) - parseInt(numTwo);
         numOne = result;
         operator = "";
         numTwo = "";
         displayTwo.textContent = result;
         displayOne.textContent = "";
-    }   else {
+}   else {
         result = parseInt(numOne) + parseInt(numTwo);
         numOne = result;
         operator = "";
@@ -88,12 +102,13 @@ function restart() {
 }
 
 cBtn.addEventListener("click", () => restart());
+deBtn.addEventListener("click", () => deInput());
 modulo.addEventListener("click", () => addOperator("%"));
 devide.addEventListener("click", () => addOperator("/"));
 minus.addEventListener("click", () => addOperator("-"));
 plus.addEventListener("click", () => addOperator("+"));
 multiply.addEventListener("click", () => addOperator("*"));
-//dot.addEventListener("click", () => addDot);
+// dot.addEventListener("click", () => addDot("."));
 zero.addEventListener("click", () => addNumber("0"));
 one.addEventListener("click", () => addNumber("1"));
 two.addEventListener("click", () => addNumber("2"));
