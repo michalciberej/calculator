@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    font-family: Roboto, sans-serif;
+}
+
 body {
     width: 100vw;
     height: 100vh;
@@ -33,13 +37,15 @@ body {
     font-size: 36px;
     color: white;
     border-bottom: 2px solid black;
-    padding: 0px 15px 10px ;   
+    padding: 0px 15px 10px ;
+    font-weight: 700;
 }
 
 #displayOne {
     font-size: 18px;
     color: orange;
     padding: 15px 15px 0px ;
+    font-weight: 700;
 }
 
 button {

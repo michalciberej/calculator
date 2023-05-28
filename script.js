@@ -20,21 +20,63 @@ const seven = document.querySelector("#sevenBtn");
 const eight = document.querySelector("#eightBtn");
 const nine = document.querySelector("#nineBtn");
 let numOne = "";
-let operator = "";
 let numTwo = "";
-
+let operator = "";
+let result = "";
 
 function addNumber(a) {
-    numOne += a
-    displayTwo.textContent = numOne;
+    if (operator == ""){
+        numOne += a;
+        displayTwo.textContent = numOne;
+    } else {
+        numTwo += a;
+        displayTwo.textContent = numTwo;
+    }
 }
-
 
 function addOperator(a) {
     operator = a;
     displayOne.textContent = numOne + " " + operator;
-    numOne = "";
     displayTwo.textContent = "";
+}
+
+function operate() {
+    if (operator == "%") {
+        result = parseInt(numOne) % parseInt(numTwo);
+        numOne = result;
+        operator = "";
+        numTwo = "";
+        displayTwo.textContent = result;
+        displayOne.textContent = "";
+    }   else if (operator =="/") {
+        result = parseInt(numOne) / parseInt(numTwo);
+        numOne = result;
+        operator = "";
+        numTwo = "";
+        displayTwo.textContent = result;
+        displayOne.textContent = "";
+    }   else if (operator == "*") {
+        result = parseInt(numOne) * parseInt(numTwo);
+        numOne = result;
+        operator = "";
+        numTwo = "";
+        displayTwo.textContent = result;
+        displayOne.textContent = "";
+    }   else if (operator == "-") {
+        result = parseInt(numOne) - parseInt(numTwo);
+        numOne = result;
+        operator = "";
+        numTwo = "";
+        displayTwo.textContent = result;
+        displayOne.textContent = "";
+    }   else {
+        result = parseInt(numOne) + parseInt(numTwo);
+        numOne = result;
+        operator = "";
+        numTwo = "";
+        displayTwo.textContent = result;
+        displayOne.textContent = "";
+    }
 }
 
 function restart() {
@@ -43,28 +85,6 @@ function restart() {
     operator = "";
     displayOne.textContent = "";
     displayTwo.textContent = "";
-
-}
-
-function operate(a) {
-    let result = 0;
-    if (a == "/") {
-        result = numOne / numTwo;
-        displayOne.textValue = numOne + " " + operator + " " + numTwo;
-        displayTwo.textValue = result
-    }   else if (a == "%") {
-        result = numOne % numTwo;
-        displayOne.textValue = numOne + " " + operator + " " + numTwo;
-        displayTwo.textValue = result
-    }   else if (a == "-") {
-        result = numOne - numTwo;
-        displayOne.textValue = numOne + " " + operator + " " + numTwo;
-        displayTwo.textValue = result
-    }   else {
-        result = numOne + numTwo;
-        displayOne.textValue = numOne + " " + operator + " " + numTwo;
-        displayTwo.textValue = result
-    }
 }
 
 cBtn.addEventListener("click", () => restart());
@@ -84,4 +104,5 @@ six.addEventListener("click", () => addNumber("6"));
 seven.addEventListener("click", () => addNumber("7"));
 eight.addEventListener("click", () => addNumber("8"));
 nine.addEventListener("click", () => addNumber("9"));
-equal.addEventListener("click", () => operate);
+equal.addEventListener("click", () => operate());
+
