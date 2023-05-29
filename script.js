@@ -24,10 +24,6 @@ let numTwo = "";
 let operator = "";
 let result = "";
 
-// function addDot() {
-
-// }
-
 function deInput() {
     if (operator == "") {
         numOne = numOne.substring(0, numOne.length - 1);
@@ -59,11 +55,10 @@ function addNumber(a) {
 }
 
 function addOperator(a) {
+    operatorOperate(a);
     operator = a;
     displayOne.textContent = numOne + " " + operator;
     displayTwo.textContent = "";
-    operatorOperate(a);
-
 }
 
 function hasNumberDecimals(x, y) {
@@ -75,14 +70,11 @@ function hasNumberDecimals(x, y) {
 
 function operatorOperate(a) {
     if (numTwo) {
-        if (hasNumberDecimals(numOne, numTwo)) {
-            result = Math.round(parseFloat((numOne) % parseFloat(numTwo)) * 1000) / 1000;
-    }   else {
-            result = parseInt(numOne) + parseInt(numTwo)
-    }    
+        operate()
     numOne = result;
     numTwo = "";
     displayOne.textContent = numOne + " " + operator;
+    displayTwo.textContent = "";
     }
 }
 
@@ -91,44 +83,36 @@ function operate() {
         if (hasNumberDecimals(numOne, numTwo)) {
             result = Math.round(parseFloat((numOne) % parseFloat(numTwo)) * 1000) / 1000;
     }   else {
-            result = parseInt(numOne) + parseInt(numTwo)
+            result = parseInt(numOne) % parseInt(numTwo)
     }
         numOne = result;
-        operator = "";
-        numTwo = "";
         displayTwo.textContent = result;
         displayOne.textContent = "";
 }   else if (operator =="/") {
         if (hasNumberDecimals(numOne, numTwo)) {
             result = Math.round(parseFloat((numOne) % parseFloat(numTwo)) * 1000) / 1000;
     }   else {
-            result = parseInt(numOne) + parseInt(numTwo)
+            result = parseInt(numOne) / parseInt(numTwo)
     }        
         numOne = result;
-        operator = "";
-        numTwo = "";
         displayTwo.textContent = result;
         displayOne.textContent = "";
 }   else if (operator == "*") {
         if (hasNumberDecimals(numOne, numTwo)) {
             result = Math.round(parseFloat((numOne) % parseFloat(numTwo)) * 1000) / 1000;
     }   else {
-            result = parseInt(numOne) + parseInt(numTwo)
+            result = parseInt(numOne) * parseInt(numTwo)
     }        
         numOne = result;
-        operator = "";
-        numTwo = "";
         displayTwo.textContent = result;
         displayOne.textContent = "";
 }   else if (operator == "-") {
         if (hasNumberDecimals(numOne, numTwo)) {
             result = Math.round(parseFloat((numOne) % parseFloat(numTwo)) * 1000) / 1000;
     }   else {
-            result = parseInt(numOne) + parseInt(numTwo)
+            result = parseInt(numOne) - parseInt(numTwo)
     }        
         numOne = result;
-        operator = "";
-        numTwo = "";
         displayTwo.textContent = result;
         displayOne.textContent = "";
 }   else {
@@ -138,12 +122,19 @@ function operate() {
             result = parseInt(numOne) + parseInt(numTwo)
     }        
         numOne = result;
-        operator = "";
-        numTwo = "";
         displayTwo.textContent = result;
         displayOne.textContent = "";
     }
 }
+
+function throwError() {
+  if (numOne === "" || operator === "" || numTwo === "") {
+    displayOne.textContent = "ERROR";
+    displayTwo.textContent = "";
+    numOne = "";
+    operator = "";
+    numTwo = "";
+}}
 
 function restart() {
     numOne = "";
@@ -152,8 +143,6 @@ function restart() {
     displayOne.textContent = "";
     displayTwo.textContent = "";
 }
-
-
 
 cBtn.addEventListener("click", () => restart());
 deBtn.addEventListener("click", () => deInput());
@@ -173,6 +162,7 @@ six.addEventListener("click", () => addNumber("6"));
 seven.addEventListener("click", () => addNumber("7"));
 eight.addEventListener("click", () => addNumber("8"));
 nine.addEventListener("click", () => addNumber("9"));
-equal.addEventListener("click", () => operate());
-
-
+equal.addEventListener("click", () => {
+  operate();
+  throwError();
+});
